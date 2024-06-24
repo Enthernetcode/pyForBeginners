@@ -1,0 +1,163 @@
+import time
+from colorama import Fore, Style, init
+
+# Initialize colorama
+init()
+
+def slow_print(text, color=Fore.WHITE, delay=0.1):
+    for char in text:
+        print(color + char, end='', flush=True)
+        time.sleep(delay)
+    print(Style.RESET_ALL)
+
+def introduction():
+    slow_print("Welcome to the Advanced Python Tutorial!", Fore.CYAN)
+    slow_print("You will learn about list comprehensions, lambda functions, decorators, file handling, exception handling, and advanced OOP.", Fore.CYAN)
+    slow_print("Let's dive deeper into Python!\n", Fore.CYAN)
+
+def section_list_comprehensions():
+    slow_print("1. List Comprehensions", Fore.YELLOW)
+    slow_print("List comprehensions provide a concise way to create lists.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("[x**2 for x in range(10)]  # Creates a list of squares of numbers 0-9", Fore.GREEN)
+    slow_print("This will produce: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]", Fore.GREEN)
+    slow_print("\n")
+
+def section_lambda_functions():
+    slow_print("2. Lambda Functions", Fore.YELLOW)
+    slow_print("Lambda functions are small anonymous functions defined with the lambda keyword.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("add = lambda x, y: x + y", Fore.GREEN)
+    slow_print("print(add(2, 3))  # Output: 5", Fore.GREEN)
+    slow_print("\n")
+
+def section_decorators():
+    slow_print("3. Decorators", Fore.YELLOW)
+    slow_print("Decorators are a way to modify the behavior of a function or class.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("def my_decorator(func):", Fore.GREEN)
+    slow_print("    def wrapper():", Fore.GREEN)
+    slow_print("        print('Something is happening before the function is called.')", Fore.GREEN)
+    slow_print("        func()", Fore.GREEN)
+    slow_print("        print('Something is happening after the function is called.')", Fore.GREEN)
+    slow_print("    return wrapper", Fore.GREEN)
+    slow_print("@my_decorator", Fore.GREEN)
+    slow_print("def say_hello():", Fore.GREEN)
+    slow_print("    print('Hello!')", Fore.GREEN)
+    slow_print("say_hello()", Fore.GREEN)
+    slow_print("\n")
+
+def section_file_handling():
+    slow_print("4. File Handling", Fore.YELLOW)
+    slow_print("Python provides built-in functions to read and write files.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("with open('example.txt', 'w') as file:", Fore.GREEN)
+    slow_print("    file.write('Hello, world!')", Fore.GREEN)
+    slow_print("with open('example.txt', 'r') as file:", Fore.GREEN)
+    slow_print("    content = file.read()", Fore.GREEN)
+    slow_print("    print(content)  # Output: Hello, world!", Fore.GREEN)
+    slow_print("\n")
+
+def section_exception_handling():
+    slow_print("5. Exception Handling", Fore.YELLOW)
+    slow_print("Exceptions are errors detected during execution. Python provides a way to handle exceptions using try and except.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("try:", Fore.GREEN)
+    slow_print("    x = 1 / 0", Fore.GREEN)
+    slow_print("except ZeroDivisionError:", Fore.GREEN)
+    slow_print("    print('Cannot divide by zero!')", Fore.GREEN)
+    slow_print("\n")
+
+def section_advanced_oop():
+    slow_print("6. Advanced OOP: Inheritance and Polymorphism", Fore.YELLOW)
+    slow_print("Inheritance allows one class to inherit attributes and methods from another class.", Fore.YELLOW)
+    slow_print("Polymorphism allows methods to be used interchangeably with different object types.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("class Animal:", Fore.GREEN)
+    slow_print("    def speak(self):", Fore.GREEN)
+    slow_print("        pass", Fore.GREEN)
+    slow_print("class Dog(Animal):", Fore.GREEN)
+    slow_print("    def speak(self):", Fore.GREEN)
+    slow_print("        return 'Woof!'", Fore.GREEN)
+    slow_print("class Cat(Animal):", Fore.GREEN)
+    slow_print("    def speak(self):", Fore.GREEN)
+    slow_print("        return 'Meow!'", Fore.GREEN)
+    slow_print("animals = [Dog(), Cat()]", Fore.GREEN)
+    slow_print("for animal in animals:", Fore.GREEN)
+    slow_print("    print(animal.speak())  # Output: Woof! Meow!", Fore.GREEN)
+    slow_print("\n")
+
+def quiz():
+    score = 0
+    total_questions = 6
+
+    slow_print("Quiz Time! Answer the following questions:", Fore.CYAN)
+
+    # Question 1
+    answer = input(Fore.WHITE + "1. What does the following list comprehension produce? [x**2 for x in range(5)] ")
+    if answer == "[0, 1, 4, 9, 16]":
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. The correct answer is '[0, 1, 4, 9, 16]'.", Fore.RED)
+
+    # Question 2
+    answer = input(Fore.WHITE + "2. What is a lambda function? ")
+    if "anonymous function" in answer.lower():
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. A lambda function is a small anonymous function.", Fore.RED)
+
+    # Question 3
+    answer = input(Fore.WHITE + "3. What keyword is used to create a decorator? ")
+    if answer.lower() == "@":
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. The correct answer is '@'.", Fore.RED)
+
+    # Question 4
+    answer = input(Fore.WHITE + "4. How do you open a file for writing in Python? ")
+    if answer.lower() == "with open('filename', 'w') as file":
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. The correct answer is \"with open('filename', 'w') as file\".", Fore.RED)
+
+    # Question 5
+    answer = input(Fore.WHITE + "5. What exception is raised when you divide by zero? ")
+    if answer.lower() == "zerodivisionerror":
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. The correct answer is 'ZeroDivisionError'.", Fore.RED)
+
+    # Question 6
+    answer = input(Fore.WHITE + "6. What is polymorphism in OOP? ")
+    if "different object types" in answer.lower():
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. Polymorphism allows methods to be used interchangeably with different object types.", Fore.RED)
+
+    slow_print(f"\nYour score is {score}/{total_questions}", Fore.CYAN)
+    if score == total_questions:
+        slow_print("Excellent! You got all questions right!", Fore.GREEN)
+    elif score >= total_questions / 2:
+        slow_print("Good job! You passed the quiz!", Fore.YELLOW)
+    else:
+        slow_print("You need more practice. Review the tutorial and try again.", Fore.RED)
+
+def main():
+    introduction()
+    section_list_comprehensions()
+    section_lambda_functions()
+    section_decorators()
+    section_file_handling()
+    section_exception_handling()
+    section_advanced_oop()
+    quiz()
+
+if __name__ == "__main__":
+    main()

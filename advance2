@@ -1,0 +1,198 @@
+import time
+from colorama import Fore, Style, init
+
+# Initialize colorama
+init()
+
+def slow_print(text, color=Fore.WHITE, delay=0.1):
+    for char in text:
+        print(color + char, end='', flush=True)
+        time.sleep(delay)
+    print(Style.RESET_ALL)
+
+def introduction():
+    slow_print("Welcome to the Advanced Python Tutorial!", Fore.CYAN)
+    slow_print("In this tutorial, you will learn about advanced Python topics such as advanced generators, custom context managers, metaclasses, concurrency with asyncio, advanced OOP concepts, decorators, and advanced exception handling.", Fore.CYAN)
+    slow_print("Let's dive deeper into Python!\n", Fore.CYAN)
+
+def section_advanced_generators():
+    slow_print("1. Advanced Generators", Fore.YELLOW)
+    slow_print("Generators can use 'yield' and 'yield from' to produce values.", Fore.YELLOW)
+    slow_print("Example with 'yield':", Fore.YELLOW)
+    slow_print("def count_down(n):", Fore.GREEN)
+    slow_print("    while n > 0:", Fore.GREEN)
+    slow_print("        yield n", Fore.GREEN)
+    slow_print("        n -= 1", Fore.GREEN)
+    slow_print("for num in count_down(5):", Fore.GREEN)
+    slow_print("    print(num)  # Output: 5 4 3 2 1", Fore.GREEN)
+    slow_print("Example with 'yield from':", Fore.YELLOW)
+    slow_print("def generator1():", Fore.GREEN)
+    slow_print("    yield from range(5)", Fore.GREEN)
+    slow_print("for num in generator1():", Fore.GREEN)
+    slow_print("    print(num)  # Output: 0 1 2 3 4", Fore.GREEN)
+    slow_print("\n")
+
+def section_custom_context_managers():
+    slow_print("2. Custom Context Managers", Fore.YELLOW)
+    slow_print("You can create custom context managers using the 'contextlib' module.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("from contextlib import contextmanager", Fore.GREEN)
+    slow_print("@contextmanager", Fore.GREEN)
+    slow_print("def my_context():", Fore.GREEN)
+    slow_print("    print('Entering')", Fore.GREEN)
+    slow_print("    yield", Fore.GREEN)
+    slow_print("    print('Exiting')", Fore.GREEN)
+    slow_print("with my_context():", Fore.GREEN)
+    slow_print("    print('Inside')", Fore.GREEN)
+    slow_print("\n")
+
+def section_metaclasses():
+    slow_print("3. Metaclasses", Fore.YELLOW)
+    slow_print("Metaclasses are classes of classes that define how a class behaves.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("class Meta(type):", Fore.GREEN)
+    slow_print("    def __new__(cls, name, bases, dct):", Fore.GREEN)
+    slow_print("        print(f'Creating class {name}')", Fore.GREEN)
+    slow_print("        return super().__new__(cls, name, bases, dct)", Fore.GREEN)
+    slow_print("class MyClass(metaclass=Meta):", Fore.GREEN)
+    slow_print("    pass", Fore.GREEN)
+    slow_print("instance = MyClass()  # Output: Creating class MyClass", Fore.GREEN)
+    slow_print("\n")
+
+def section_asyncio():
+    slow_print("4. Concurrency with asyncio", Fore.YELLOW)
+    slow_print("asyncio is a library to write concurrent code using the async/await syntax.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("import asyncio", Fore.GREEN)
+    slow_print("async def say_hello():", Fore.GREEN)
+    slow_print("    await asyncio.sleep(1)", Fore.GREEN)
+    slow_print("    print('Hello!')", Fore.GREEN)
+    slow_print("async def main():", Fore.GREEN)
+    slow_print("    await asyncio.gather(say_hello(), say_hello())", Fore.GREEN)
+    slow_print("asyncio.run(main())  # Output: Hello! Hello!", Fore.GREEN)
+    slow_print("\n")
+
+def section_advanced_oop():
+    slow_print("5. Advanced OOP Concepts", Fore.YELLOW)
+    slow_print("Advanced OOP concepts include mixins, abstract base classes, and multiple inheritance.", Fore.YELLOW)
+    slow_print("Example with Mixins:", Fore.YELLOW)
+    slow_print("class FlyMixin:", Fore.GREEN)
+    slow_print("    def fly(self):", Fore.GREEN)
+    slow_print("        return 'Flying!'", Fore.GREEN)
+    slow_print("class Bird(FlyMixin):", Fore.GREEN)
+    slow_print("    pass", Fore.GREEN)
+    slow_print("bird = Bird()", Fore.GREEN)
+    slow_print("print(bird.fly())  # Output: Flying!", Fore.GREEN)
+    slow_print("\n")
+
+def section_decorators():
+    slow_print("6. Decorators and Function Wrappers", Fore.YELLOW)
+    slow_print("Decorators are a way to modify the behavior of functions or classes.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("def my_decorator(func):", Fore.GREEN)
+    slow_print("    def wrapper():", Fore.GREEN)
+    slow_print("        print('Something is happening before the function is called.')", Fore.GREEN)
+    slow_print("        func()", Fore.GREEN)
+    slow_print("        print('Something is happening after the function is called.')", Fore.GREEN)
+    slow_print("    return wrapper", Fore.GREEN)
+    slow_print("@my_decorator", Fore.GREEN)
+    slow_print("def say_hello():", Fore.GREEN)
+    slow_print("    print('Hello!')", Fore.GREEN)
+    slow_print("say_hello()  # Output: Something is happening before the function is called. Hello! Something is happening after the function is called.", Fore.GREEN)
+    slow_print("\n")
+
+def section_advanced_exception_handling():
+    slow_print("7. Advanced Exception Handling", Fore.YELLOW)
+    slow_print("Advanced exception handling involves custom exceptions and context-specific error handling.", Fore.YELLOW)
+    slow_print("Example:", Fore.YELLOW)
+    slow_print("class CustomError(Exception):", Fore.GREEN)
+    slow_print("    pass", Fore.GREEN)
+    slow_print("try:", Fore.GREEN)
+    slow_print("    raise CustomError('This is a custom error')", Fore.GREEN)
+    slow_print("except CustomError as e:", Fore.GREEN)
+    slow_print("    print(e)  # Output: This is a custom error", Fore.GREEN)
+    slow_print("\n")
+
+def quiz():
+    score = 0
+    total_questions = 7
+
+    slow_print("Quiz Time! Answer the following questions:", Fore.CYAN)
+
+    # Question 1
+    answer = input(Fore.WHITE + "1. What keyword can be used to create an iterator in a generator? ")
+    if answer.lower() == "yield":
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. The correct answer is 'yield'.", Fore.RED)
+
+    # Question 2
+    answer = input(Fore.WHITE + "2. What module can be used to create custom context managers? ")
+    if answer.lower() == "contextlib":
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. The correct answer is 'contextlib'.", Fore.RED)
+
+    # Question 3
+    answer = input(Fore.WHITE + "3. What is a metaclass in Python? ")
+    if "class of a class" in answer.lower():
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. A metaclass is a class of a class that defines how a class behaves.", Fore.RED)
+
+    # Question 4
+    answer = input(Fore.WHITE + "4. What library in Python is used for concurrency with async/await syntax? ")
+    if answer.lower() == "asyncio":
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. The correct answer is 'asyncio'.", Fore.RED)
+
+    # Question 5
+    answer = input(Fore.WHITE + "5. What is a mixin in Python OOP? ")
+    if "add optional features" in answer.lower():
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. Mixins are used to add optional features to a class.", Fore.RED)
+
+    # Question 6
+    answer = input(Fore.WHITE + "6. What is a decorator in Python? ")
+    if "modify the behavior of a function or class" in answer.lower():
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. Decorators are used to modify the behavior of functions or classes.", Fore.RED)
+
+    # Question 7
+    answer = input(Fore.WHITE + "7. How do you define a custom exception in Python? ")
+    if "class CustomError(Exception)" in answer:
+        score += 1
+        slow_print("Correct!", Fore.GREEN)
+    else:
+        slow_print("Incorrect. The correct way is 'class CustomError(Exception):'.", Fore.RED)
+
+    slow_print(f"\nYour score is {score}/{total_questions}", Fore.CYAN)
+    if score == total_questions:
+        slow_print("Excellent! You got all questions right!", Fore.GREEN)
+    elif score >= total_questions / 2:
+        slow_print("Good job! You passed the quiz!", Fore.YELLOW)
+    else:
+        slow_print("You need more practice. Review the tutorial and try again.", Fore.RED)
+
+def main():
+    introduction()
+    section_advanced_generators()
+    section_custom_context_managers()
+    section_metaclasses()
+    section_asyncio()
+    section_advanced_oop()
+    section_decorators()
+    section_advanced_exception_handling()
+    quiz()
+
+if __name__ == "__main__":
+    main()
