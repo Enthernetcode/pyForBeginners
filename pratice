@@ -1,0 +1,156 @@
+import time
+import sys
+import io
+from colorama import Fore, Style, init
+from contextlib import redirect_stdout
+
+# Initialize colorama
+init()
+
+def slow_print(text, color=Fore.WHITE, delay=0.1):
+    for char in text:
+        print(color + char, end='', flush=True)
+        time.sleep(delay)
+    print(Style.RESET_ALL)
+
+def evaluate_user_code(user_code, expected_output):
+    # Capture the output of the user's code
+    f = io.StringIO()
+    with redirect_stdout(f):
+        try:
+            exec(user_code, {})
+        except Exception as e:
+            return f"Error: {e}"
+    output = f.getvalue().strip()
+    
+    # Compare the captured output to the expected output
+    if output == expected_output:
+        return "Correct!"
+    else:
+        return f"Incorrect. Expected output:\n{expected_output}\nBut got:\n{output}"
+
+def coding_prompt(task, expected_output):
+    slow_print(task, Fore.CYAN)
+    slow_print("Write your code below and press Enter when you're done. Type 'DONE' on a new line to finish.\n", Fore.YELLOW)
+    
+    # Capture multiline user input
+    user_code = ""
+    while True:
+        line = input(Fore.WHITE)
+        if line.strip().upper() == 'DONE':
+            break
+        user_code += line + "\n"
+    
+    feedback = evaluate_user_code(user_code, expected_output)
+    slow_print(feedback, Fore.GREEN if feedback == "Correct!" else Fore.RED)
+
+def main():
+    # Sample tasks and expected outputs for the coding area
+    tasks = [
+        ("Task 1: Write a function that returns the square of a number.\n\n"
+         "Example:\n"
+         "def square(n):\n"
+         "    # Your code here\n"
+         "print(square(4))  # Expected output: 16\n",
+         "16"),
+        
+        ("Task 2: Write a function that returns 'Hello, World!'.\n\n"
+         "Example:\n"
+         "def hello():\n"
+         "    # Your code here\n"
+         "print(hello())  # Expected output: Hello, World!\n",
+         "Hello, World!"),
+        
+        ("Task 3: Write a function that adds two numbers and returns the result.\n\n"
+         "Example:\n"
+         "def add(a, b):\n"
+         "    # Your code here\n"
+         "print(add(2, 3))  # Expected output: 5\n",
+         "5"),
+         ("Task 4: Write a generator function that yields numbers from 0 to n-1.\n\n"
+         "Example:\n"
+         "def generator(n):\n"
+         "    # Your code here\n"
+         "for num in generator(5):\n"
+         "    print(num)  # Expected output: 0 1 2 3 4\n",
+         "0\n1\n2\n3\n4"),
+        
+        ("Task 5: Create a custom context manager using contextlib that prints 'Entering' when entering the context and 'Exiting' when exiting the context.\n\n"
+         "Example:\n"
+         "from contextlib import contextmanager\n"
+         "@contextmanager\n"
+         "def my_context():\n"
+         "    # Your code here\n"
+         "with my_context():\n"
+         "    print('Inside')  # Expected output: Entering\nInside\nExiting\n",
+         "Entering\nInside\nExiting"),
+        
+        ("Task 6: Define a metaclass that prints 'Creating class {classname}' when a new class is created.\n\n"
+         "Example:\n"
+         "class Meta(type):\n"
+         "    def __new__(cls, name, bases, dct):\n"
+         "        print(f'Creating class {name}')\n"
+         "        return super().__new__(cls, name, bases, dct)\n"
+         "class MyClass(metaclass=Meta):\n"
+         "    pass\n"
+         "instance = MyClass()  # Expected output: Creating class MyClass\n",
+         "Creating class MyClass"),
+        
+        ("Task 7: Use asyncio to create an asynchronous function that prints 'Hello' after 1 second and 'World' after another second.\n\n"
+         "Example:\n"
+         "import asyncio\n"
+         "async def say_hello():\n"
+         "    await asyncio.sleep(1)\n"
+         "    print('Hello')\n"
+         "async def say_world():\n"
+         "    await asyncio.sleep(1)\n"
+         "    print('World')\n"
+         "async def main():\n"
+         "    await asyncio.gather(say_hello(), say_world())\n"
+         "asyncio.run(main())  # Expected output: Hello\nWorld\n",
+         "Hello\nWorld"),
+        
+        ("Task 8: Write a mixin class 'FlyMixin' with a method 'fly' that returns 'Flying!', and a class 'Bird' that inherits from 'FlyMixin'.\n\n"
+         "Example:\n"
+         "class FlyMixin:\n"
+         "    def fly(self):\n"
+         "        return 'Flying!'\n"
+         "class Bird(FlyMixin):\n"
+         "    pass\n"
+         "bird = Bird()\n"
+         "print(bird.fly())  # Expected output: Flying!\n",
+         "Flying!"),
+        
+        ("Task 9: Create a decorator 'my_decorator' that prints 'Before' before the function call and 'After' after the function call.\n\n"
+         "Example:\n"
+         "def my_decorator(func):\n"
+         "    def wrapper():\n"
+         "        print('Before')\n"
+         "        func()\n"
+         "        print('After')\n"
+         "    return wrapper\n"
+         "@my_decorator\n"
+         "def say_hello():\n"
+         "    print('Hello')\n"
+         "say_hello()  # Expected output: Before\nHello\nAfter\n",
+         "Before\nHello\nAfter"),
+        
+        ("Task 10: Define a custom exception 'CustomError' and raise it with the message 'This is a custom error'. Catch the exception and print the message.\n\n"
+         "Example:\n"
+         "class CustomError(Exception):\n"
+         "    pass\n"
+         "try:\n"
+         "    raise CustomError('This is a custom error')\n"
+         "except CustomError as e:\n"
+         "    print(e)  # Expected output: This is a custom error\n",
+         "This is a custom error")
+    ]
+    
+    slow_print("Welcome to the Interactive Python Coding Environment!", Fore.CYAN)
+    for task, expected_output in tasks:
+        coding_prompt(task, expected_output)
+    
+    slow_print("Thank you for using the Interactive Python Coding Environment!", Fore.CYAN)
+
+if __name__ == "__main__":
+    main()
