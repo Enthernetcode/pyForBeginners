@@ -11,7 +11,7 @@ def slow_print(text, color=Fore.WHITE, delay=0.1):
     print(Style.RESET_ALL)
 
 def introduction():
-    slow_print("Welcome to the Advanced Python Tutorial!", Fore.CYAN)
+    slow_print("Welcome to the Basic Python Tutorial!", Fore.CYAN)
     slow_print("You will learn about list comprehensions, lambda functions, decorators, file handling, exception handling, and advanced OOP.", Fore.CYAN)
     slow_print("Let's dive deeper into Python!\n", Fore.CYAN)
 

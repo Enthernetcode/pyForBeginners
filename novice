@@ -11,7 +11,7 @@ def slow_print(text, color=Fore.WHITE, delay=0.1):
     print(Style.RESET_ALL)
 
 def introduction():
-    slow_print("Welcome to the Python Basics Tutorial!", Fore.CYAN)
+    slow_print("Welcome to the Python Beginners Tutorial!", Fore.CYAN)
     slow_print("You will learn about variables, data types, operations, conditionals, loops, functions, and OOP.", Fore.CYAN)
     slow_print("Let's get started!\n", Fore.CYAN)
 
